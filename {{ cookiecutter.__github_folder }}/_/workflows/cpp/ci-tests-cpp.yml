@@ -20,15 +20,16 @@ env:
   ##############################################################################
 
 jobs:
-  run_experiment:
+  run_unit_tests:
     ############################################################################
     # Please fill in with the Runner(s) in which to execute this action
-    ############################################################################
-    runs-on: [ubuntu-22.04]
+    # Ref. https://docs.github.com/en/actions/hosting-your-own-runners/using-self-hosted-runners-in-a-workflow
+    # Ref. https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners    ############################################################################
+    runs-on: ubuntu-22.04
     ############################################################################
 
     container:
-      image: $TARGET_DOCKER_IMAGE
+      image: {{ '${{ env.TARGET_DOCKER_IMAGE }}' }}
 
       ##########################################################################
       # Please uncomment and fill the following if the image comes from a private repository
@@ -39,24 +40,34 @@ jobs:
       #     password: {{ '${{ secrets.RepositoryPass }}' }}
       ##########################################################################
 
+    ############################################################################
+    # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
+    # Ref. https://github.com/EnricoMi/publish-unit-test-result-action#support-fork-repositories-and-dependabot-branches
+    ############################################################################
+    permissions:
+          contents: read
+          issues: read
+          checks: write
+          pull-requests: write
+
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Build tests
         working-directory: .
         run: |
           cmake -S . -B build
-          cmake --build build -t $TEST_TARGET_NAME
+          cmake --build build -t {{ '${{ env.TEST_TARGET_NAME }}' }}
 
       - name: Run tests
         working-directory: .
         run: |
-          ./build/test/$TEST_TARGET_NAME --reporter junit -o ci-result-junit.xml
+          ./build/test/{{ '${{ env.TEST_TARGET_NAME }}' }} --reporter junit -o junit/ci-result-junit.xml
 
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
+        uses: EnricoMi/publish-unit-test-result-action@v2
         if: success()
         with:
-          files: ci-result-junit.xml
+          files: junit/ci-result-junit.xml
           action_fail: true
           action_fail_on_inconclusive: true
