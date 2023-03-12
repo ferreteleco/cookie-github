@@ -19,6 +19,54 @@ body:
     validations:
       required: true
 
+  - type: markdown
+    attributes:
+      value: |
+        "### Detailed information, fill it where possible / applicable" |
+        "___"
+
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: A concise description of what you expected to happen.
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Steps To Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. In this environment...
+        2. With this config...
+        3. Run '...'
+        4. See error...
+    validations:
+      required: false
+
+  - type: textarea
+    id: code-sample
+    attributes:
+      label: Code to produce this issue.
+      description: Please copy and paste any relevant code to re-produce this issue.
+      render: YAML
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant application logs
+      description: Add relevant log excerpt for the application, if applicable.
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        "### OS / environment information, fill it where possible / applicable" |
+        "___"
+
   - type: dropdown
     id: operating-systems
     attributes:
@@ -40,19 +88,10 @@ body:
     validations:
       required: false
 
-  - type: textarea
-    id: code-sample
+  - type: input
+    id: code-version
     attributes:
-      label: Code to produce this issue.
-      description: Please copy and paste any relevant code to re-produce this issue.
-      render: shell
+      label: Version
+      description: What version of the software are you running?
     validations:
-      required: false
-
-  - type: textarea
-    id: logs
-    attributes:
-      label: Relevant application logs
-      description: Add relevant log excerpt for the application, if applicable.
-    validations:
-      required: false
+      required: true
