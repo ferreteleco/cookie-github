@@ -59,6 +59,7 @@ body:
   - type: markdown
     attributes:
       value: |
+        
         </details>
 
         ### OS / environment information, fill it where possible / applicable
