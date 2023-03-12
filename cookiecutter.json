@@ -7,5 +7,6 @@
     true,
     false
   ],
+  "add_ci_action_unit_tests_runner": ["none", "cpp"],
   "__github_folder": ".github"
 }
