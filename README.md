@@ -4,15 +4,17 @@ This repository can be used for adding Github Actions and templates to an existi
 
 ## Version
 
-Current version is 0.1.0 and was set according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Current version is 1.0.0 and was set according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 Project's version should be updated, when applicable:
 
 - In this very file.
+- In the changelog.
 
 ## Usage
 
-In order to start a new project, install [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) and run the following command:
+In order to start a new project, install [Cookiecutter](https://cookiecutter.readthedocs.io/en/latest/)
+and run the following command:
 
 ```bash
 $ cookiecutter https://github.com/ferreteleco/cookie-github.git
@@ -30,8 +32,8 @@ again. In order to do so, simply specify template name as argument for cookiecut
 $ cookiecutter cookie-github
 ```
 
-NOTE: alternatively, you can use [Cookieninja](https://github.com/cookieninja-generator/cookieninja), a forked and more updated version of Cookiecutter with
-backward compatibility.
+NOTE: alternatively, you can use [Cookieninja](https://github.com/cookieninja-generator/cookieninja),
+  forked and more updated version of Cookiecutter with backward compatibility.
 
 ## Variables
 
@@ -42,6 +44,10 @@ you will be prompted to fill in the following values:
   folder.
 - **add_PR_template:** this flags controls wether or not to add a PR template in the generated
   folder.
+- **add_ci_action_unit_tests_runner:** this variable controls whether or not to create an action to
+  run unit tests in the repository. The available options are:
+    - none (no action created).
+    - cpp, which creates an action for Catch2 based unit tests, built using CMake.
 
 ## Contributing
 
