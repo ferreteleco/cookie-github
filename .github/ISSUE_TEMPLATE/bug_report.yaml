@@ -10,6 +10,17 @@ body:
       value: |
         Thanks for taking the time to fill out this bug report!
 
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Check those before continue
+      options:
+        - label: I checked the documentation and found no answer
+        - label: I checked to make sure that this issue has not been filed yet
+        - label: I am running the latest stable version of the code
+        - label: I have the correct environment and set-up needed for running the code
+
   - type: textarea
     id: what-happened
     attributes:
