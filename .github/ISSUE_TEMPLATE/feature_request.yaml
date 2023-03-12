@@ -1,6 +1,6 @@
-name: Feature request
-description: Suggest an feature / idea for this project
-title: "[Feature Request / Suggestion]: "
+name: Feature
+description: Add an issue for a new feature / idea for this project
+title: ""
 labels: ["enhancement"]
 body:
   - type: markdown
@@ -11,8 +11,6 @@ body:
     id: Suggestion
     attributes:
       label: Suggestion / Feature Request
-      description: Describe the feature(s) you would like to see added.
-      placeholder: Tell us your suggestion
-      value: "Your suggestion here"
+      description: Describe the feature(s) to be added.
     validations:
       required: true
