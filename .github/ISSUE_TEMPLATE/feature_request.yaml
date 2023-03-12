@@ -1,16 +1,16 @@
-name: Feature
-description: Add an issue for a new feature / idea for this project
+name: Task
+description: Add an issue for a new Task, covering new feature / idea for this project (or a maintenance one)
 labels: ["enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        Please be sure to include as much details & any resources if possible!
+        Please be sure to include as much details and indications as possible (and applicable)!
   - type: textarea
     id: Suggestion
     attributes:
-      label: Suggestion / Feature Request
-      description: Describe the feature(s) to be added.
-      placeholder: Tell us your suggestion
+      label: Suggestion / Feature
+      description: Describe the task to be carried out.
+      placeholder: Implement a new awesome feature that makes coffee! or Add some tests!
     validations:
       required: true
