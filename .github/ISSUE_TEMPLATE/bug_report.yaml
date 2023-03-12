@@ -45,7 +45,7 @@ body:
     attributes:
       label: Code to produce this issue.
       description: Please copy and paste any relevant code to re-produce this issue.
-      render: shell
+      render: YAML
     validations:
       required: false
 
