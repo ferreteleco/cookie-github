@@ -1,0 +1,11 @@
+{
+  "add_issue_templates": [
+    true,
+    false
+  ],
+  "add_PR_template": [
+    true,
+    false
+  ],
+  "__github_folder": ".github"
+}
