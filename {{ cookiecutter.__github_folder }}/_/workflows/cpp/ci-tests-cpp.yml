@@ -1,0 +1,62 @@
+name: ci-tests-cpp
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+
+env:
+  ##############################################################################
+  # Please fill in:
+  # (Ref. https://docs.github.com/en/github-ae@latest/actions/learn-github-actions/variables)
+  ##############################################################################
+  # Target name to compile (test target). Replace the variable accordingly
+  ##############################################################################
+  TEST_TARGET_NAME: test_target_name
+  ##############################################################################
+  # Docker image used to generate a container in which to execute this action
+  ##############################################################################
+  TARGET_DOCKER_IMAGE: ubuntu:jammy
+  ##############################################################################
+
+jobs:
+  run_experiment:
+    ############################################################################
+    # Please fill in with the Runner(s) in which to execute this action
+    ############################################################################
+    runs-on: [ubuntu-22.04]
+    ############################################################################
+
+    container:
+      image: $TARGET_DOCKER_IMAGE
+
+      ##########################################################################
+      # Please uncomment and fill the following if the image comes from a private repository
+      # More info in: https://docs.github.com/en/actions/security-guides/encrypted-secrets
+      ##########################################################################
+      # credentials:
+      #     username: {{ '${{ secrets.RepositoryUser }}' }}
+      #     password: {{ '${{ secrets.RepositoryPass }}' }}
+      ##########################################################################
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build tests
+        working-directory: .
+        run: |
+          cmake -S . -B build
+          cmake --build build -t $TEST_TARGET_NAME
+
+      - name: Run tests
+        working-directory: .
+        run: |
+          ./build/test/$TEST_TARGET_NAME --reporter junit -o ci-result-junit.xml
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: success()
+        with:
+          files: ci-result-junit.xml
+          action_fail: true
+          action_fail_on_inconclusive: true
