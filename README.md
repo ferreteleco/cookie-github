@@ -29,3 +29,30 @@ again. In order to do so, simply specify template name as argument for cookiecut
 ```bash
 $ cookiecutter cookie-github
 ```
+
+NOTE: alternatively, you can use [Cookieninja](https://github.com/cookieninja-generator/cookieninja), a forked and more updated version of Cookiecutter with
+backward compatibility.
+
+## Variables
+
+Variables allow to customize your project. After running one of the previous cookiecutter commands,
+you will be prompted to fill in the following values:
+
+- **add_issue_templates:** this flags controls wether or not to add issue templates in the generated
+  folder.
+- **add_PR_template:** this flags controls wether or not to add a PR template in the generated
+  folder.
+
+## Contributing
+
+If you want to contribute to this template, feel free to do so! Create a new branch to work in, and
+open a pull request when you are done! It will be reviewed and merged into master by one of the
+maintainers as soon as possible.
+
+## Authors
+
+- [Andrés Ferreiro González](https://github.com/ferreteleco)
+
+## Maintainer
+
+- [Andrés Ferreiro González](https://github.com/ferreteleco)
