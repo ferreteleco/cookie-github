@@ -4,6 +4,7 @@
 If it fixes a bug or resolves a feature request, be sure to link to that issue.
 Fixes # (issue) -->
 
+
 ## Types of changes
 
 What types of changes does the PR introduce?
@@ -24,7 +25,7 @@ This is simply a reminder of what we are going to look for before merging your c
 - [ ] Introduced code follows the style guidelines of this project
 - [ ] Introduced code includes tests that prove fix is effective or feature works (if applicable)
 - [ ] Introduced code includes necessary documentation (if applicable)
-- [ ] Author has performed a self-review of my code
+- [ ] Author has performed a self-review of the introduced code
 - [ ] Introduced code includes relevant comments, particularly in hard-to-understand areas
 - [ ] New and existing unit tests pass locally with changes included
 - [ ] Any dependent changes have been merged and published in downstream modules
@@ -50,8 +51,6 @@ Please also list any relevant details for your test configuration
 
 - Compiler/interpreter version:
 - OS Version:
-- Toolchain:
-- SDK:
 
 ## Further comments
 
