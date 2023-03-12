@@ -1,6 +1,6 @@
 name: Bug Report
 description: File a bug report
-title: "[Bug]: "
+title: ""
 labels: ["bug", "triage"]
 assignees:
   - octocat
@@ -17,7 +17,6 @@ body:
       label: What happened?
       description: Describe the issue here.
       placeholder: Tell us what you see!
-      value: "A bug happened!"
     validations:
       required: true
 
