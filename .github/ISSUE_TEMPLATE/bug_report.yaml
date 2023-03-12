@@ -22,8 +22,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        "### Detailed information, fill it where possible / applicable" |
-        "___"
+        ### Detailed information, fill it where possible / applicable
+        ___
 
   - type: textarea
     attributes:
