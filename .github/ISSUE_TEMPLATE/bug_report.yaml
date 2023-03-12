@@ -10,6 +10,17 @@ body:
       value: |
         Thanks for taking the time to fill out this bug report!
 
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Check those before continue
+      options:
+        - label: I checked the documentation and found no answer
+        - label: I checked to make sure that this issue has not been filed yet
+        - label: I am running the latest stable version of the code
+        - label: I have the correct environment and set-up needed for running the code
+
   - type: textarea
     id: what-happened
     attributes:
@@ -18,6 +29,47 @@ body:
       placeholder: Tell us what you see!
     validations:
       required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ### Detailed information, fill it where possible / applicable
+        ___
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: A concise description of what you expected to happen.
+    validations:
+      required: false
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps To Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. In this environment...
+        2. With this config...
+        3. Run '...'
+        4. See error...
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant application logs
+      description: Add relevant log excerpt for the application, if applicable.
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ### OS / environment information, fill it where possible / applicable
+        ___
 
   - type: dropdown
     id: operating-systems
@@ -32,27 +84,17 @@ body:
     validations:
       required: true
 
-  - type: input
-    id: os-version
-    attributes:
-      label: OS Version
-      description: What are the affected version(s) of the OS(s)?
-    validations:
-      required: false
-
   - type: textarea
-    id: code-sample
+    id: environment
     attributes:
-      label: Code to produce this issue.
-      description: Please copy and paste any relevant code to re-produce this issue.
-      render: YAML
-    validations:
-      required: false
-
-  - type: textarea
-    id: logs
-    attributes:
-      label: Relevant application logs
-      description: Add relevant log excerpt for the application, if applicable.
+      label: Environment
+      description: |
+        examples:
+          - **OS**: Ubuntu 20.04
+          - **Compiler/interpreter version**: Python 3.10.2
+      value: |
+        - OS:
+        - Compiler/interpreter version:
+      render: Markdown
     validations:
       required: false
