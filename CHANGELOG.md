@@ -24,6 +24,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 -
 
+## [**1.1.0**] - 2023-03-13
+
+### Added
+
+- Cookiecutter action for CI Unit testing in python (Poetry, pytest based).
+
+### Changed
+
+- Improved post gen. hooks, now tells to look for the checklist.
+- Improved existing documentation to reflect changes.
+
+### Fixed
+
+- Minor errors in C++ CI UT template.
+
 ## [**1.0.0**] - 2023-03-12
 
 ### Added

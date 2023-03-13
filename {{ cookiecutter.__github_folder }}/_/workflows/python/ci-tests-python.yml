@@ -1,4 +1,4 @@
-name: ci-tests-cpp
+name: ci-tests-python
 on:
   push:
   pull_request:
@@ -10,13 +10,13 @@ env:
   # Please fill in:
   # (Ref. https://docs.github.com/en/github-ae@latest/actions/learn-github-actions/variables)
   ##############################################################################
-  # Target name to compile (test target). Replace the variable accordingly
+  # Target python version intended to use to run tests into. Defaults to 3.10.2
   ##############################################################################
-  TEST_TARGET_NAME: test_target_name
+  TARGET_PYTHON_VERSION: 3.10.2
   ##############################################################################
-  # Docker image used to generate a container in which to execute this action
+  # Target folder where tests reside. Defaults to "tests"
   ##############################################################################
-  TARGET_DOCKER_IMAGE: ubuntu:jammy
+  TESTS_DIRECTORY: tests
   ##############################################################################
 
 jobs:
@@ -24,21 +24,10 @@ jobs:
     ############################################################################
     # Please fill in with the Runner(s) in which to execute this action
     # Ref. https://docs.github.com/en/actions/hosting-your-own-runners/using-self-hosted-runners-in-a-workflow
-    # Ref. https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners    ############################################################################
-    runs-on: ubuntu-22.04
+    # Ref. https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
     ############################################################################
-
-    container:
-      image: {{ '${{ env.TARGET_DOCKER_IMAGE }}' }}
-
-      ##########################################################################
-      # Please uncomment and fill the following if the image comes from a private repository
-      # More info in: https://docs.github.com/en/actions/security-guides/encrypted-secrets
-      ##########################################################################
-      # credentials:
-      #     username: {{ '${{ secrets.RepositoryUser }}' }}
-      #     password: {{ '${{ secrets.RepositoryPass }}' }}
-      ##########################################################################
+    runs-on: ubuntu-20.04
+    ############################################################################
 
     ############################################################################
     # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
@@ -53,16 +42,32 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build tests
-        working-directory: .
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: {{ '${{ env.TARGET_PYTHON_VERSION }}' }}
+
+      - name: Install poetry
         run: |
-          cmake -S . -B build
-          cmake --build build -t {{ '${{ env.TEST_TARGET_NAME }}' }}
+          python -m pip install pipx && python -m pipx install poetry
+
+      - name: Configure poetry
+        run: |
+          poetry config virtualenvs.in-project true
+
+      - name: Cache the virtualenv
+        uses: actions/cache@v3
+        with:
+          path: ./.venv
+          key: {{ '${{ runner.os }}' }}-venv-{{ '${{ hashFiles(\'**/poetry.lock\') }}' }}
+
+      - name: Install dependencies
+        run: |
+          poetry install
 
       - name: Run tests
-        working-directory: .
         run: |
-          ./build/test/{{ '${{ env.TEST_TARGET_NAME }}' }} --reporter junit -o junit/ci-result-junit.xml
+          poetry run python -m pytest {{ '${{ env.TESTS_DIRECTORY }}' }} --doctest-modules --junit-xml=junit/ci-result-junit.xml
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2

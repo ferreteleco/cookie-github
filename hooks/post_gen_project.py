@@ -39,6 +39,10 @@ def add_ci_action_unit_tests_runner():
         ci_test_workflow_files_path = Path("_", "workflows", target_ci_tests_action)
         copytree(ci_test_workflow_files_path, destination)
 
+        print("\n\n#################################################################")
+        print("# Please check gen. checklist in order to adjust CI UT basic action #")
+        print("#################################################################\n\n")
+
     else:
         LOG.info("Skipping CI action for running unit tests file generation (%s selected) ...", target_ci_tests_action)
 

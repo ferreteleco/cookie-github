@@ -7,6 +7,10 @@
     true,
     false
   ],
-  "add_ci_action_unit_tests_runner": ["none", "cpp"],
+  "add_ci_action_unit_tests_runner": [
+    "none",
+    "cpp",
+    "python"
+  ],
   "__github_folder": ".github"
 }

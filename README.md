@@ -4,7 +4,7 @@ This repository can be used for adding Github Actions and templates to an existi
 
 ## Version
 
-Current version is 1.0.0 and was set according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Current version is 1.1.0 and was set according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 Project's version should be updated, when applicable:
 
@@ -33,7 +33,7 @@ $ cookiecutter cookie-github
 ```
 
 NOTE: alternatively, you can use [Cookieninja](https://github.com/cookieninja-generator/cookieninja),
-  forked and more updated version of Cookiecutter with backward compatibility.
+forked and more updated version of Cookiecutter with backward compatibility.
 
 ## Variables
 
@@ -45,9 +45,11 @@ you will be prompted to fill in the following values:
 - **add_PR_template:** this flags controls wether or not to add a PR template in the generated
   folder.
 - **add_ci_action_unit_tests_runner:** this variable controls whether or not to create an action to
-  run unit tests in the repository. The available options are:
+  run unit tests in the repository. The available choices are:
     - none (no action created).
     - cpp, which creates an action for Catch2 based unit tests, built using CMake.
+    - python, which creates an action for Python code unit tests, executed with pytest over a 
+      project built with Poetry.
 
 ## Contributing
 
