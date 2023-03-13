@@ -44,12 +44,14 @@ you will be prompted to fill in the following values:
   folder.
 - **add_PR_template:** this flags controls wether or not to add a PR template in the generated
   folder.
+- **project_language:** This variable choice serves to select the main project language, and it is
+  aligned with the actions that will be later opt to be created.
 - **add_ci_action_unit_tests_runner:** this variable controls whether or not to create an action to
-  run unit tests in the repository. The available choices are:
-    - none (no action created).
+  run unit tests in the repository. The available actions (per project_language variable) are:
     - cpp, which creates an action for Catch2 based unit tests, built using CMake.
-    - python, which creates an action for Python code unit tests, executed with pytest over a 
+    - python, which creates an action for Python code unit tests, executed with pytest over a
       project built with Poetry.
+    - other, which does not generate any action.
 
 ## Contributing
 
