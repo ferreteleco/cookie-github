@@ -2,7 +2,7 @@
 
 import logging
 from pathlib import Path
-from shutil import rmtree, copy, copytree
+from shutil import rmtree, copytree
 
 
 def change_line_endings_crlf_to_lf():
@@ -29,14 +29,14 @@ def remove_unwanted_templates():
 def add_ci_action_unit_tests_runner():
     """Adds a CI action for running unit tests, if applicable"""
 
-    target_ci_tests_action = "{{cookiecutter.add_ci_action_unit_tests_runner}}"
+    target_language = "{{cookiecutter.project_language}}"
 
-    if target_ci_tests_action.lower() != "none":
+    if {{cookiecutter.add_ci_action_unit_tests_runner}} and target_language.lower() != "other":
 
         LOG.info("Adding action for running unit tests (workflows folder) with default config...")
 
         destination = Path("workflows")
-        ci_test_workflow_files_path = Path("_", "workflows", target_ci_tests_action)
+        ci_test_workflow_files_path = Path("_", "workflows", target_language)
         copytree(ci_test_workflow_files_path, destination)
 
         print("\n\n#################################################################")
@@ -44,7 +44,7 @@ def add_ci_action_unit_tests_runner():
         print("#################################################################\n\n")
 
     else:
-        LOG.info("Skipping CI action for running unit tests file generation (%s selected) ...", target_ci_tests_action)
+        LOG.info("Skipping CI action for running unit tests file generation (%s language selected) ...", target_language)
 
 
 def clean():
