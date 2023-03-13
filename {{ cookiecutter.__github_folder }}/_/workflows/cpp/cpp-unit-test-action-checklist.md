@@ -12,3 +12,6 @@ it to the remote repository.
       (defaults to *ubuntu-22.04*, hosted by GH).
     - [ ] The credentials for acquiring the Docker image(if needed) have been configured via secrets
     and required section in action file uncommented.
+
+In GitHub's repository settings >> Branches >> Branch protection rules >> Enable 'Require status
+checks to pass before merging'.
