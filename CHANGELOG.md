@@ -24,6 +24,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 -
 
+## [**1.2.1**] - 2023-03-13
+
+### Added
+
+-
+
+### Changed
+
+- Improved post gen. hooks, now tells to look for the checklist associated with each action.
+- Improved existing documentation to reflect changes and better explain functionality.
+
+### Fixed
+
+- Minor errors in C++ CI UT template.
+
 ## [**1.1.0**] - 2023-03-13
 
 ### Added

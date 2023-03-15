@@ -4,7 +4,7 @@ This repository can be used for adding Github Actions and templates to an existi
 
 ## Version
 
-Current version is 1.2.0 and was set according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Current version is 1.2.1 and was set according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 Project's version should be updated, when applicable:
 
@@ -23,16 +23,16 @@ $ cookiecutter https://github.com/ferreteleco/cookie-github.git
 It will create the appropriate .github folder in your project directory (wherever you invoke
 cookiecutter).
 
-NOTE: it can also be cloned using GIT over SSH, if properly configured in your account.
+**NOTE:** it can also be cloned using GIT over SSH, if properly configured in your account.
 
-NOTE1: after the repository is downloaded, the template can be used again without downloading it
+**NOTE:** after the repository is downloaded, the template can be used again without downloading it
 again. In order to do so, simply specify template name as argument for cookiecutter:
 
 ```bash
 $ cookiecutter cookie-github
 ```
 
-NOTE: alternatively, you can use [Cookieninja](https://github.com/cookieninja-generator/cookieninja),
+**NOTE:** alternatively, you can use [Cookieninja](https://github.com/cookieninja-generator/cookieninja),
 forked and more updated version of Cookiecutter with backward compatibility.
 
 ## Variables
@@ -52,6 +52,9 @@ you will be prompted to fill in the following values:
     - python, which creates an action for Python code unit tests, executed with pytest over a
       project built with Poetry.
     - other, which does not generate any action.
+
+**NOTE:** Each added action will be accompanied of a markdown checklist, stating the changes /
+configuration required to fine tune it.
 
 ## Contributing
 
