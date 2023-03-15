@@ -5,6 +5,20 @@ from pathlib import Path
 from shutil import rmtree, copytree
 
 
+class color:
+    """Simple colors for print without external libraries."""
+    PURPLE = '\033[95m'
+    CYAN = '\033[96m'
+    DARK_CYAN = '\033[36m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    END = '\033[0m'
+
+
 def change_line_endings_crlf_to_lf():
     for path in Path(".").glob("**/*"):
         if path.is_file():
@@ -31,7 +45,7 @@ def add_ci_action_unit_tests_runner():
 
     target_language = "{{cookiecutter.project_language}}"
 
-    if {{cookiecutter.add_ci_action_unit_tests_runner}}
+    if {{cookiecutter.add_ci_action_unit_tests_runner}}:
 
         if target_language.lower() != "other":
 
@@ -41,9 +55,11 @@ def add_ci_action_unit_tests_runner():
             ci_test_workflow_files_path = Path("_", "workflows", target_language)
             copytree(ci_test_workflow_files_path, destination)
 
-            print("\n\n#################################################################")
-            print("# Please check gen. checklist in order to adjust CI UT basic action #")
-            print("#################################################################\n\n")
+            print("\n\n######################################################################")
+            print("#                                                                    #")
+            print(f"# {color.BOLD}{color.BLUE}Please review gen. checklist in order to adjust CI UT basic action{color.END} #")
+            print("#                                                                    #")
+            print("######################################################################\n\n")
 
         else:
             LOG.info("CI action for running unit tests file generation is not defined for %s language. Skipping...", target_language)
