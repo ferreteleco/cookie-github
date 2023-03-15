@@ -31,20 +31,25 @@ def add_ci_action_unit_tests_runner():
 
     target_language = "{{cookiecutter.project_language}}"
 
-    if {{cookiecutter.add_ci_action_unit_tests_runner}} and target_language.lower() != "other":
+    if {{cookiecutter.add_ci_action_unit_tests_runner}}
 
-        LOG.info("Adding action for running unit tests (workflows folder) with default config...")
+        if target_language.lower() != "other":
 
-        destination = Path("workflows")
-        ci_test_workflow_files_path = Path("_", "workflows", target_language)
-        copytree(ci_test_workflow_files_path, destination)
+            LOG.info("Adding action for running unit tests (workflows folder) with default config...")
 
-        print("\n\n#################################################################")
-        print("# Please check gen. checklist in order to adjust CI UT basic action #")
-        print("#################################################################\n\n")
+            destination = Path("workflows")
+            ci_test_workflow_files_path = Path("_", "workflows", target_language)
+            copytree(ci_test_workflow_files_path, destination)
+
+            print("\n\n#################################################################")
+            print("# Please check gen. checklist in order to adjust CI UT basic action #")
+            print("#################################################################\n\n")
+
+        else:
+            LOG.info("CI action for running unit tests file generation is not defined for %s language. Skipping...", target_language)
 
     else:
-        LOG.info("Skipping CI action for running unit tests file generation (%s language selected) ...", target_language)
+        LOG.info("Skipping CI action for running unit tests file generation")
 
 
 def clean():
