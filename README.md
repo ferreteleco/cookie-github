@@ -44,14 +44,24 @@ you will be prompted to fill in the following values:
   folder.
 - **add_PR_template:** this flags controls wether or not to add a PR template in the generated
   folder.
-- **project_language:** This variable choice serves to select the main project language, and it is
-  aligned with the actions that will be later opt to be created.
-- **add_ci_action_unit_tests_runner:** this variable controls whether or not to create an action to
-  run unit tests in the repository. The available actions (per project_language variable) are:
+- **add_ci_action_unit_tests:** this variable controls whether or not to create an action to
+  run unit tests in the repository. The available actions are:
     - cpp, which creates an action for Catch2 based unit tests, built using CMake.
     - python, which creates an action for Python code unit tests, executed with pytest over a
       project built with Poetry.
-    - other, which does not generate any action.
+    - none, which does not generate any action.
+- **add_ci_action_auto_release:** this variable controls whether or not to create an action to
+  generate dev releases (pre-releases, tagged with "latest" tag), triggered on pushes to master
+  branch. The available actions are:
+    - python, which creates an action for Python releases, building assets after pytest test
+      execution in a project built with Poetry.
+    - none, which does not generate any action.
+- **add_ci_action_tagged_release:** this variable controls whether or not to create an action to
+  generate tagged releases (releases, semver tagged), triggered on "v*.*.*" tags pushed. The
+  available actions are:
+    - python, which creates an action for Python releases, building assets after pytest test
+      execution in a project built with Poetry.
+    - none, which does not generate any action.
 
 **NOTE:** Each added action will be accompanied of a markdown checklist, stating the changes /
 configuration required to fine tune it.

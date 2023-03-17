@@ -1,4 +1,4 @@
-name: ci-dev-release-auto
+name: ci-auto-release
 
 on:
   push:
