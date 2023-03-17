@@ -8,8 +8,8 @@
     false
   ],
   "add_ci_action_unit_tests": [
-    "cpp",
     "python",
+    "cpp",
     "none"
   ],
   "add_ci_auto_release": [
