@@ -33,7 +33,7 @@ jobs:
   pre-release:
 
     name: Pre-Release
-    runs-on: {{ '${{env.RUNNER}}' }}
+    runs-on: {{ '${{ env.RUNNER }}' }}
     
     ############################################################################
     # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
