@@ -7,14 +7,18 @@
     true,
     false
   ],
-  "project_language": [
+  "add_ci_action_unit_tests": [
     "cpp",
     "python",
-    "other"
+    "none"
   ],
-  "add_ci_action_unit_tests_runner": [
-    true,
-    false
+  "add_ci_auto_release": [
+    "python",
+    "none"
+  ],
+  "add_ci_tagged_release": [
+    "python",
+    "none"
   ],
   "__github_folder": ".github"
 }
