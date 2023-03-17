@@ -52,7 +52,7 @@ def add_ci_action_unit_tests():
 
         destination = Path("workflows")
         ci_test_workflow_files_path = Path("_", "workflows", "ci-unit", target_language)
-        copytree(ci_test_workflow_files_path, destination)
+        copytree(ci_test_workflow_files_path, destination, dirs_exist_ok=True)
 
         print("\n\n######################################################################")
         print("#                                                                    #")
@@ -76,7 +76,7 @@ def add_ci_action_auto_release():
 
         destination = Path("workflows")
         ci_auto_release_workflow_files_path = Path("_", "workflows", "ci-auto-release", target_language)
-        copytree(ci_auto_release_workflow_files_path, destination)
+        copytree(ci_auto_release_workflow_files_path, destination, dirs_exist_ok=True)
 
         print("\n\n################################################################################")
         print("#                                                                              #")
@@ -100,13 +100,13 @@ def add_ci_action_tagged_release():
 
         destination = Path("workflows")
         ci_tagged_release_workflow_files_path = Path("_", "workflows", "ci-tagged-release", target_language)
-        copytree(ci_tagged_release_workflow_files_path, destination)
+        copytree(ci_tagged_release_workflow_files_path, destination, dirs_exist_ok=True)
 
         print("\n\n###################################################################################")
         print("#                                                                                 #")
-        print(f"# {color.BOLD}{color.BLUE}Please review gen. checklist in order to adjust CI tagged basic action{color.END} #")
+        print(f"# {color.BOLD}{color.BLUE}Please review gen. checklist in order to adjust CI tagged basic action{color.END}         #")
         print("#                                                                                 #")
-        print("####################################################################################\n\n")
+        print("###################################################################################\n\n")
 
     else:
         LOG.info("Skipping CI action for generating tagged releases file generation")
