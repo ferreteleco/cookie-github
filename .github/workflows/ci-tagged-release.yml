@@ -3,7 +3,7 @@ name: ci-tagged-release
 on:
   push:
     tags:
-      - "v*"
+      - "v*.*.*"
 
 jobs:
   tagged-release:
