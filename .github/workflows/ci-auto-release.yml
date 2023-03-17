@@ -13,9 +13,19 @@ jobs:
           contents: write
 
     steps:
-      - uses: marvinpinto/action-automatic-releases@latest
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Delete latest tag
+        uses: cb80/delrel@latest
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          automatic_release_tag: latest
+          tag: latest
+
+      - name: Release development version
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: latest
           prerelease: true
-          title: Development Build
+          name: Pre-release (dev build)
+          body_path: ${{ github.workspace }}/CHANGELOG.md
