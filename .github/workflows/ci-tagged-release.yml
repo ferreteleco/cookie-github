@@ -19,7 +19,7 @@ jobs:
     # Ref. https://github.com/EnricoMi/publish-unit-test-result-action#support-fork-repositories-and-dependabot-branches
     ############################################################################
     permissions:
-      contents: read
+      contents: write
       issues: read
       checks: write
       pull-requests: write
