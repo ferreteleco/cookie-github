@@ -1,26 +1,9 @@
 name: ci-tests-python
 
 env:
-  ##############################################################################
-  # Please fill in:
-  # Ref. https://docs.github.com/en/github-ae@latest/actions/learn-github-actions/variables
-  ##############################################################################
-  # Target python version intended to use to run tests into. Defaults to 3.10.2
-  ##############################################################################
   TARGET_PYTHON_VERSION: 3.10.2
-  ##############################################################################
-  ##############################################################################
-  # Target folder where tests reside. Defaults to "tests"
-  ##############################################################################
   TESTS_DIRECTORY: tests
-  ##############################################################################
-  ##############################################################################
-  # Please fill in with the Runner(s) in which to execute this action
-  # Ref. https://docs.github.com/en/actions/hosting-your-own-runners/using-self-hosted-runners-in-a-workflow
-  # Ref. https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
-  ############################################################################
   RUNNER: ubuntu-20.04
-  ############################################################################
 
 on:
   push:
