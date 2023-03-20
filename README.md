@@ -45,6 +45,12 @@ $ cookiecutter https://github.com/ferreteleco/cookie-github.git
 $ cookiecutter -f https://github.com/ferreteleco/cookie-github.git
 ```
 
+IMPORTANT: PR and Issue templates option overwrites every time, so if they are wanted, should be
+marked as true in the last call to cookiecutter. The CI specific options are managed differently and
+this is not an issue (it can be set to true or false in successive calls without erasing previous 
+calls generated data).
+
+
 **NOTE:** alternatively, you can use [Cookieninja](https://github.com/cookieninja-generator/cookieninja),
 forked and more updated version of Cookiecutter with backward compatibility.
 
