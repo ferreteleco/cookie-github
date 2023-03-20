@@ -6,6 +6,7 @@ it to the remote repository.
 ## Checklist
 
 - [ ] The intended branch and triggers are correct (default: *on tag push*).
+- [ ] The default tag pattern matches the one intended for the project (default: *"\*.\*.\*"*).
 - [ ] The target python version has been configured (defaults to *3.10.2*).
 - [ ] The target test directory where tests live has been defined (defaults to *tests*).
 - [ ] The target runner(s) in which to run the CI Unit Testing workflow have been configured
