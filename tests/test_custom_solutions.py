@@ -28,8 +28,8 @@ def test_bake_folder_existing():
     assert result["exit_code"] == 0
     assert result["project_dir"].stem == ".github"
     assert result["project_dir"].is_dir()
-    # 3, because .gitattributes is also generated
-    assert len(list(result["project_dir"].rglob("*.*"))) == 4
+    # 5, because .gitattributes is also generated
+    assert len(list(result["project_dir"].rglob("*.*"))) == 5
 
     extra_context_2 = {
         "add_issue_templates": True,
