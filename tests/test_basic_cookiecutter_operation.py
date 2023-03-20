@@ -9,7 +9,7 @@ All Rights Reserved
 """
 
 
-def test_bake_folder(cookies):
+def test_bake_folder_default(cookies):
     """Basic cookiecutter test for baking a .github folder with default settings"""
 
     result = cookies.bake()
