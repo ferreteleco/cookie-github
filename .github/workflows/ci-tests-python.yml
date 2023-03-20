@@ -31,7 +31,7 @@ on:
 jobs:
   # Ref. https://joaodlf.com/using-poetry-in-github-actions-the-easy-way.html
   run_unit_tests:
-    runs-on: ubuntu-20.04
+    runs-on: ${{ env.RUNNER }}
 
     ############################################################################
     # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
@@ -44,10 +44,6 @@ jobs:
       pull-requests: write
 
     steps:
-    
-      - name: debug
-        run: |
-          echo ${{ env.RUNNER }}
           
       - uses: actions/checkout@v3
 
