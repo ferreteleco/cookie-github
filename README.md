@@ -33,6 +33,18 @@ again. In order to do so, simply specify template name as argument for cookiecut
 $ cookiecutter cookie-github
 ```
 
+If more than one target language is desired (Python and C++ for example), the cookiecutter can be
+run again with the *-f* option, in order to select a new target language and add it to the base
+folder:
+
+```bash
+# First call. Folder gets created. Select python options, for example.
+$ cookiecutter https://github.com/ferreteleco/cookie-github.git
+# Second call, Folder already exists. If python was selected again, contents will be overwritten.
+# If C++ is selected (for example) new CI files, related with C++ development, will be added.
+$ cookiecutter -f https://github.com/ferreteleco/cookie-github.git
+```
+
 **NOTE:** alternatively, you can use [Cookieninja](https://github.com/cookieninja-generator/cookieninja),
 forked and more updated version of Cookiecutter with backward compatibility.
 
