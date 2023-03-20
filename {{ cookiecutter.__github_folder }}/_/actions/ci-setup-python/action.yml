@@ -17,10 +17,12 @@ runs:
       - name: Install poetry
         run: |
           python -m pip install pipx && python -m pipx install poetry
+        shell: bash
 
       - name: Configure poetry
         run: |
           poetry config virtualenvs.in-project true
+        shell: bash
 
       - name: Cache the virtualenv
         uses: actions/cache@v3
@@ -31,3 +33,4 @@ runs:
       - name: Install dependencies
         run: |
           poetry install
+        shell: bash

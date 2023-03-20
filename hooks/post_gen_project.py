@@ -53,12 +53,24 @@ def add_ci_action_unit_tests():
         destination = Path("workflows")
         ci_test_workflow_files_path = Path("_", "workflows", "ci-unit", target_language)
         copytree(ci_test_workflow_files_path, destination, dirs_exist_ok=True)
+        if target_language.lower() == "python":
+            destination = Path(f"actions/ci-setup-{target_language.lower()}")
+            ci_test_workflow_files_path = Path(
+                "_", "actions", f"ci-setup-{target_language.lower()}"
+            )
+            copytree(ci_test_workflow_files_path, destination, dirs_exist_ok=True)
 
-        print("\n\n######################################################################")
+        print(
+            "\n\n######################################################################"
+        )
         print("#                                                                    #")
-        print(f"# {color.BOLD}{color.BLUE}Please review gen. checklist in order to adjust CI UT basic action{color.END} #")
+        print(
+            f"# {color.BOLD}{color.BLUE}Please review gen. checklist in order to adjust CI UT basic action{color.END} #"
+        )
         print("#                                                                    #")
-        print("######################################################################\n\n")
+        print(
+            "######################################################################\n\n"
+        )
 
     else:
         LOG.info("Skipping CI action for running unit tests file generation")
@@ -75,14 +87,26 @@ def add_ci_action_auto_release():
         )
 
         destination = Path("workflows")
-        ci_auto_release_workflow_files_path = Path("_", "workflows", "ci-auto-release", target_language)
+        ci_auto_release_workflow_files_path = Path(
+            "_", "workflows", "ci-auto-release", target_language
+        )
         copytree(ci_auto_release_workflow_files_path, destination, dirs_exist_ok=True)
 
-        print("\n\n################################################################################")
-        print("#                                                                              #")
-        print(f"# {color.BOLD}{color.BLUE}Please review gen. checklist in order to adjust CI auto release basic action{color.END} #")
-        print("#                                                                              #")
-        print("################################################################################\n\n")
+        print(
+            "\n\n################################################################################"
+        )
+        print(
+            "#                                                                              #"
+        )
+        print(
+            f"# {color.BOLD}{color.BLUE}Please review gen. checklist in order to adjust CI auto release basic action{color.END} #"
+        )
+        print(
+            "#                                                                              #"
+        )
+        print(
+            "################################################################################\n\n"
+        )
 
     else:
         LOG.info("Skipping CI action for generating auto releases file generation")
@@ -99,14 +123,26 @@ def add_ci_action_tagged_release():
         )
 
         destination = Path("workflows")
-        ci_tagged_release_workflow_files_path = Path("_", "workflows", "ci-tagged-release", target_language)
+        ci_tagged_release_workflow_files_path = Path(
+            "_", "workflows", "ci-tagged-release", target_language
+        )
         copytree(ci_tagged_release_workflow_files_path, destination, dirs_exist_ok=True)
 
-        print("\n\n###################################################################################")
-        print("#                                                                                 #")
-        print(f"# {color.BOLD}{color.BLUE}Please review gen. checklist in order to adjust CI tagged basic action{color.END}         #")
-        print("#                                                                                 #")
-        print("###################################################################################\n\n")
+        print(
+            "\n\n###################################################################################"
+        )
+        print(
+            "#                                                                                 #"
+        )
+        print(
+            f"# {color.BOLD}{color.BLUE}Please review gen. checklist in order to adjust CI tagged basic action{color.END}         #"
+        )
+        print(
+            "#                                                                                 #"
+        )
+        print(
+            "###################################################################################\n\n"
+        )
 
     else:
         LOG.info("Skipping CI action for generating tagged releases file generation")
