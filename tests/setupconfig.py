@@ -68,26 +68,35 @@ def run_cookiecutter(
         "context": None,
     }
 
-    # Render the context, so it can be returned.
-    context = prompt_for_config(
-        generate_context(
-            context_file=str("cookiecutter.json"), extra_context=extra_context
-        ),
-        no_input=True,
-    )
+    try:
+        # Render the context, so it can be returned.
+        context = prompt_for_config(
+            generate_context(
+                context_file=str("cookiecutter.json"), extra_context=extra_context
+            ),
+            no_input=True,
+        )
 
-    # Run cookiecutter to generate a new project
-    generated_dir = cookiecutter(
-        template=".",
-        output_dir=str(path),
-        no_input=True,
-        overwrite_if_exists=overwrite_contents_if_exist,
-        extra_context=extra_context,
-    )
+        # Run cookiecutter to generate a new project
+        generated_dir = cookiecutter(
+            template=".",
+            output_dir=str(path),
+            no_input=True,
+            overwrite_if_exists=overwrite_contents_if_exist,
+            extra_context=extra_context,
+        )
 
-    result["project_dir"] = Path(generated_dir)
-    result["context"] = context
-    result["exit_code"] = 0
-    result["exception"] = None
+        result["project_dir"] = Path(generated_dir)
+        result["context"] = context
+        result["exit_code"] = 0
+        result["exception"] = None
+
+    except SystemExit as ex:
+        if ex.code != 0:
+            result["exit_code"] = ex.code
+        result["exception"] = ex
+    except Exception as ex:
+        result["exit_code"] = -1
+        result["exception"] = ex
 
     return result
