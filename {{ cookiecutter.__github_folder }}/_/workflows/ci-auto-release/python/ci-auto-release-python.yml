@@ -19,22 +19,21 @@ env:
   ##############################################################################
   TESTS_DIRECTORY: tests
   ##############################################################################
-  ##############################################################################
-  # Please fill in with the Runner(s) in which to execute this action
-  # Ref. https://docs.github.com/en/actions/hosting-your-own-runners/using-self-hosted-runners-in-a-workflow
-  # Ref. https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
-  ############################################################################
-  RUNNER: ubuntu-20.04
-  ############################################################################
-  
 
 jobs:
 
   pre-release:
 
     name: Pre-Release
-    runs-on: {{ '${{ env.RUNNER }}' }}
-    
+    ############################################################################
+    ############################################################################
+    # Please fill in with the Runner(s) in which to execute this action
+    # Ref. https://docs.github.com/en/actions/hosting-your-own-runners/using-self-hosted-runners-in-a-workflow
+    # Ref. https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+    ############################################################################
+    runs-on: ubuntu-20.04
+    ############################################################################
+
     ############################################################################
     # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
     # Ref. https://github.com/EnricoMi/publish-unit-test-result-action#support-fork-repositories-and-dependabot-branches
@@ -49,24 +48,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - name: Setup (composite)
+        uses: ./.github/workflows/ci-setup-python.yml
         with:
-          python-version: {{ '${{ env.TARGET_PYTHON_VERSION }}' }}
-
-      - name: Install poetry
-        run: |
-          python -m pip install pipx && python -m pipx install poetry
-
-      - name: Configure poetry
-        run: |
-          poetry config virtualenvs.in-project true
-
-      - name: Cache the virtualenv
-        uses: actions/cache@v3
-        with:
-          path: ./.venv
-          key: {{ '${{ runner.os }}' }}-venv-{{ '${{ hashFiles(\'**/poetry.lock\') }}' }}
+          python_version: {{ '${{ env.TARGET_PYTHON_VERSION }}' }}
 
       - name: Run tests
         run: |
