@@ -9,7 +9,8 @@ Current version is 1.2.1 and was set according to [Semantic Versioning](https://
 Project's version should be updated, when applicable:
 
 - In this very file.
-- In the changelog.
+- In the CHANGELOG.md file.
+- In the CHANGES.md file.
 
 ## Usage
 
