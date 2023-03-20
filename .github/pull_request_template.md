@@ -40,7 +40,7 @@ Please also list any relevant details for your test configuration
 
 **Test Configuration**:
 
-- Compiler/interpreter version:
+- Compiler/interpreter/Tool version:
 - OS Version:
 - Toolchain:
 - SDK:
