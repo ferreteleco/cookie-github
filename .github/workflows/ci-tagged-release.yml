@@ -1,5 +1,9 @@
 name: ci-tagged-release
 
+env:
+  TARGET_PYTHON_VERSION: 3.10.2
+  TESTS_DIRECTORY: tests
+
 on:
   push:
     tags:
@@ -16,6 +20,28 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Setup (composite)
+        uses: ./.github/actions/ci-setup-python
+        with:
+          python_version: ${{ env.TARGET_PYTHON_VERSION }}
+
+      - name: Run tests
+        run: |
+          python -m pytest ${{ env.TESTS_DIRECTORY }} --doctest-modules --junit-xml=junit/ci-result-junit.xml
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: junit/ci-result-junit.xml
+          action_fail: true
+          action_fail_on_inconclusive: true
+
+      - name: Delete latest tag
+        uses: cb80/delrel@latest
+        with:
+          tag: latest
 
       - name: Release
         uses: softprops/action-gh-release@v1
