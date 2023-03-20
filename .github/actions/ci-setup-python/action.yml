@@ -16,11 +16,13 @@ runs:
       - name: Install virtualenv
         run: |
           python -m pip install virtualenv
+        shell: bash
 
       - name: Configure virtualenv
         run: |
           python -m virtualenv .venv
           source .venv/bin/activate
+        shell: bash
 
       - name: Cache the virtualenv
         uses: actions/cache@v3
@@ -31,3 +33,4 @@ runs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+        shell: bash
