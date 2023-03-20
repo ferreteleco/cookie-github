@@ -31,18 +31,17 @@ env:
 jobs:
   # Ref. https://joaodlf.com/using-poetry-in-github-actions-the-easy-way.html
   run_unit_tests:
-
-    runs-on: ubuntu-20.04
+    runs-on: ${{ env.RUNNER }}
 
     ############################################################################
     # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
     # Ref. https://github.com/EnricoMi/publish-unit-test-result-action#support-fork-repositories-and-dependabot-branches
     ############################################################################
     permissions:
-          contents: read
-          issues: read
-          checks: write
-          pull-requests: write
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v3
