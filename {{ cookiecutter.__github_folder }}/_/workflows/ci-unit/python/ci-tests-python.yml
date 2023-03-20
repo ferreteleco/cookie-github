@@ -1,7 +1,6 @@
 name: ci-tests-python
 
 on:
-  push:
   pull_request:
     branches:
       - master
