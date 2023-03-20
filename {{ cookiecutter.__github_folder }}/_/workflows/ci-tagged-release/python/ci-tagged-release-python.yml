@@ -3,7 +3,7 @@ name: ci-tagged-release-python
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "*.*.*"
 
 env:
   ##############################################################################
@@ -93,9 +93,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
-          tag_name: latest
-          prerelease: true
-          name: Pre-release (dev build)
           generate_release_notes: true
           files: |
             {{ '${{ github.workspace }}' }}/CHANGELOG.md
