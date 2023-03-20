@@ -1,0 +1,32 @@
+name: Python-CI-setup
+
+inputs:
+  python_version:
+    description: The target python version which use to configure the project.
+    required: true
+
+runs:
+  using: composite
+  steps:
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python_version }}
+
+      - name: Install poetry
+        run: |
+          python -m pip install pipx && python -m pipx install poetry
+
+      - name: Configure poetry
+        run: |
+          poetry config virtualenvs.in-project true
+
+      - name: Cache the virtualenv
+        uses: actions/cache@v3
+        with:
+          path: ./.venv
+          key: {{ '${{ runner.os }}' }}-venv-{{ '${{ hashFiles(\'**/poetry.lock\') }}' }}
+
+      - name: Install dependencies
+        run: |
+          poetry install
