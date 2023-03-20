@@ -13,8 +13,16 @@ jobs:
   tagged-release:
     name: Tagged-Release
     runs-on: ubuntu-20.04
+
+    ############################################################################
+    # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
+    # Ref. https://github.com/EnricoMi/publish-unit-test-result-action#support-fork-repositories-and-dependabot-branches
+    ############################################################################
     permissions:
-          contents: write
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
 
     steps:
 
