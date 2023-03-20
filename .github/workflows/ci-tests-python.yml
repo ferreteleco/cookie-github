@@ -32,7 +32,7 @@ jobs:
   # Ref. https://joaodlf.com/using-poetry-in-github-actions-the-easy-way.html
   run_unit_tests:
 
-    runs-on: ${{env.RUNNER}}
+    runs-on: ${{ env.RUNNER }}
 
     ############################################################################
     # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
