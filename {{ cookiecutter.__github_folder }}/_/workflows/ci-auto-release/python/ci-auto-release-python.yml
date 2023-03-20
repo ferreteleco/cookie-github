@@ -39,10 +39,10 @@ jobs:
     # Ref. https://github.com/EnricoMi/publish-unit-test-result-action#support-fork-repositories-and-dependabot-branches
     ############################################################################
     permissions:
-          contents: write # For tags
-          issues: read
-          checks: write
-          pull-requests: write
+      contents: write # For tags
+      issues: read
+      checks: write
+      pull-requests: write
 
     steps:
       - name: Checkout
@@ -74,6 +74,7 @@ jobs:
         uses: cb80/delrel@latest
         with:
           tag: latest
+          token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
 
       - name: do-Prerelease
         uses: softprops/action-gh-release@v1

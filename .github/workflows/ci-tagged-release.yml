@@ -50,6 +50,7 @@ jobs:
         uses: cb80/delrel@latest
         with:
           tag: latest
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
