@@ -36,7 +36,7 @@ jobs:
 
       - name: Run tests
         run: |
-          poetry run python -m pytest ${{ env.TESTS_DIRECTORY }} --doctest-modules --junit-xml=junit/ci-result-junit.xml
+          python -m pytest ${{ env.TESTS_DIRECTORY }} --doctest-modules --junit-xml=junit/ci-result-junit.xml
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
