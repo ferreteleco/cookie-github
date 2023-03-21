@@ -45,11 +45,10 @@ $ cookiecutter https://github.com/ferreteleco/cookie-github.git
 $ cookiecutter -f https://github.com/ferreteleco/cookie-github.git
 ```
 
-IMPORTANT: PR and Issue templates option overwrites every time, so if they are wanted, should be
+**IMPORTANT**: PR and Issue templates option overwrites every time, so if they are wanted, should be
 marked as true in the last call to cookiecutter. The CI specific options are managed differently and
-this is not an issue (it can be set to true or false in successive calls without erasing previous 
+this is not an issue (it can be set to true or false in successive calls without erasing previous
 calls generated data).
-
 
 **NOTE:** alternatively, you can use [Cookieninja](https://github.com/cookieninja-generator/cookieninja),
 forked and more updated version of Cookiecutter with backward compatibility.
@@ -59,31 +58,34 @@ forked and more updated version of Cookiecutter with backward compatibility.
 Variables allow to customize your project. After running one of the previous cookiecutter commands,
 you will be prompted to fill in the following values:
 
-- **add_issue_templates:** this flags controls wether or not to add issue templates in the generated
-  folder.
-- **add_PR_template:** this flags controls wether or not to add a PR template in the generated
-  folder.
-- **add_ci_action_unit_tests:** this variable controls whether or not to create an action to
-  run unit tests in the repository. The available actions are:
-    - cpp, which creates an action for Catch2 based unit tests, built using CMake.
-    - python, which creates an action for Python code unit tests, executed with pytest over a
-      project built with Poetry.
-    - none, which does not generate any action.
-- **add_ci_action_auto_release:** this variable controls whether or not to create an action to
-  generate dev releases (pre-releases, tagged with "latest" tag), triggered on pushes to master
-  branch. The available actions are:
-    - python, which creates an action for Python releases, building assets after pytest test
-      execution in a project built with Poetry.
-    - none, which does not generate any action.
-- **add_ci_action_tagged_release:** this variable controls whether or not to create an action to
-  generate tagged releases (releases, semver tagged), triggered on "v*.*.*" tags pushed. The
-  available actions are:
-    - python, which creates an action for Python releases, building assets after pytest test
-      execution in a project built with Poetry.
-    - none, which does not generate any action.
+- **add_issue_templates:** this flag controls wether or not to add issue templates in the generated
+  folder. Defaults to true.
+- **add_PR_template:** this flag controls wether or not to add a PR template in the generated
+  folder. Defaults to true.
+- **target_language:** this flag controls the target language for which to generate CI actions.
+  Possible values are: none, python, cpp and generic. Defaults to none.
+    - ***none***. No actions generated so far.
+    - ***python***. It adds a composite actions for reduce duplicated code in actions, and workflows
+    for:
+        - running unit tests: executed with pytest over a project built with Poetry.
+        - generate Pre-releases: action to generate dev releases (pre-releases, tagged with "latest"
+        tag), triggered on pushes to master branch and building assets after pytest test execution
+        in a project built with Poetry.
+        - generate tagged releases: action to generate tagged releases (releases, semver tagged),
+        triggered on "*.*.*" tags pushed to the repository and building assets after pytest test
+        execution in a project built with Poetry.
+    - ***cpp***. It adds workflows for:
+        - running unit tests: which creates an action for Catch2 based unit tests, built using
+        CMake.
+    - ***generic***. It adds workflows for:
+        - generate Pre-releases: action to generate dev releases (pre-releases, tagged with "latest"
+        tag), triggered on pushes to master branch.
+        - generate tagged releases: action to generate tagged releases (releases, semver tagged),
+        triggered on "*.*.*" tags pushed to the repository.
+- **ci_runner**: Target runner(s) in which to generate the action. More info in [GitHub-hosted](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) runners and [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/using-self-hosted-runners-in-a-workflow). Defaults to ubuntu-20.04.
 
-**NOTE:** Each added action will be accompanied of a markdown checklist, stating the changes /
-configuration required to fine tune it.
+**NOTE:** Each added language actions will be accompanied of a markdown checklist, stating the
+changes / configuration required to fine tune it.
 
 ## Contributing
 

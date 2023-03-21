@@ -1,0 +1,25 @@
+name: ci-tagged-release-generic
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  tagged-release:
+    name: Tagged-Release
+    runs-on: {{ cookiecutter.ci_runner }}
+    permissions:
+          contents: write
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
+          prerelease: false
+          # body_path: {{ '${{ github.workspace }}' }}/CHANGES.md

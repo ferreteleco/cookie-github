@@ -7,18 +7,12 @@
     true,
     false
   ],
-  "add_ci_action_unit_tests": [
+  "target_language": [
+    "none",
     "python",
     "cpp",
-    "none"
+    "generic"
   ],
-  "add_ci_auto_release": [
-    "python",
-    "none"
-  ],
-  "add_ci_tagged_release": [
-    "python",
-    "none"
-  ],
+  "ci_runner": "ubuntu-20.04",
   "__github_folder": ".github"
 }

@@ -1,9 +1,9 @@
-name: ci-tests-python
+name: ci-tagged-release-python
 
 on:
-  pull_request:
-    branches:
-      - master
+  push:
+    tags:
+      - "*.*.*"
 
 env:
   ##############################################################################
@@ -19,35 +19,30 @@ env:
   ##############################################################################
   TESTS_DIRECTORY: tests
   ##############################################################################
-  ##############################################################################
-  # Please fill in with the Runner(s) in which to execute this action
-  # Ref. https://docs.github.com/en/actions/hosting-your-own-runners/using-self-hosted-runners-in-a-workflow
-  # Ref. https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
-  ############################################################################
-  RUNNER: ubuntu-20.04
-  ############################################################################
 
 jobs:
-  # Ref. https://joaodlf.com/using-poetry-in-github-actions-the-easy-way.html
-  run_unit_tests:
 
-    runs-on: {{ '${{env.RUNNER}}' }}
+  release:
+
+    name: Tagged-Release
+    runs-on: {{ cookiecutter.ci_runner }}
 
     ############################################################################
     # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
     # Ref. https://github.com/EnricoMi/publish-unit-test-result-action#support-fork-repositories-and-dependabot-branches
     ############################################################################
     permissions:
-          contents: read
+          contents: write # For tags
           issues: read
           checks: write
           pull-requests: write
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Setup (composite)
-        uses: ./.github/workflows/ci-setup-python.yml
+        uses: ./.github/actions/ci-setup-python
         with:
           python_version: {{ '${{ env.TARGET_PYTHON_VERSION }}' }}
 
@@ -57,8 +52,27 @@ jobs:
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
+        if: success()
         with:
           files: junit/ci-result-junit.xml
           action_fail: true
           action_fail_on_inconclusive: true
+
+      - name: Package application
+        run: |
+          rm -rf dist
+          poetry build
+
+      - name: Delete latest tag
+        uses: cb80/delrel@latest
+        with:
+          tag: latest
+          token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
+
+      - name: Release version
+        uses: softprops/action-gh-release@v1
+        with:
+          token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
+          generate_release_notes: true
+          files: |
+            {{ '${{ github.workspace }}' }}/dist/*
