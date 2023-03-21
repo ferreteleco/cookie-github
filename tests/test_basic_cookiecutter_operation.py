@@ -32,9 +32,8 @@ def test_bake_folder_pr_template_only():
     extra_context = {
         "add_issue_templates": False,
         "add_PR_template": True,
-        "add_ci_action_unit_tests": "none",
-        "add_ci_auto_release": "none",
-        "add_ci_tagged_release": "none",
+        "target_language": "none",
+        "ci-runner": "ubuntu-20.04",
     }
     result = run_cookiecutter(temp_path, extra_context=extra_context)
 

@@ -20,12 +20,9 @@ env:
 
 jobs:
   run_unit_tests:
-    ############################################################################
-    # Please fill in with the Runner(s) in which to execute this action
-    # Ref. https://docs.github.com/en/actions/hosting-your-own-runners/using-self-hosted-runners-in-a-workflow
-    # Ref. https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners    ############################################################################
-    runs-on: ubuntu-22.04
-    ############################################################################
+
+    name: Unit Tests
+    runs-on: {{ cookiecutter.ci_runner }}
 
     container:
       image: {{ '${{ env.TARGET_DOCKER_IMAGE }}' }}

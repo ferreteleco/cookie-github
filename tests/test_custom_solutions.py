@@ -19,24 +19,22 @@ def test_bake_folder_existing():
     extra_context = {
         "add_issue_templates": False,
         "add_PR_template": True,
-        "add_ci_action_unit_tests": "python",
-        "add_ci_auto_release": "none",
-        "add_ci_tagged_release": "none",
+        "target_language": "python",
+        "ci-runner": "ubuntu-20.04",
     }
     result = run_cookiecutter(temp_path, extra_context=extra_context)
 
     assert result["exit_code"] == 0
     assert result["project_dir"].stem == ".github"
     assert result["project_dir"].is_dir()
-    # 5, because .gitattributes is also generated
-    assert len(list(result["project_dir"].rglob("*.*"))) == 5
+
+    assert len(list(result["project_dir"].rglob("*.*"))) == 7
 
     extra_context_2 = {
         "add_issue_templates": True,
         "add_PR_template": True,
-        "add_ci_action_unit_tests": "cpp",
-        "add_ci_auto_release": "none",
-        "add_ci_tagged_release": "none",
+        "target_language": "cpp",
+        "ci-runner": "ubuntu-20.04",
     }
     result_2 = run_cookiecutter(
         temp_path, extra_context=extra_context_2, overwrite_contents_if_exist=True
