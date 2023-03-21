@@ -72,7 +72,7 @@ you will be prompted to fill in the following values:
         tag), triggered on pushes to master branch and building assets after pytest test execution
         in a project built with Poetry.
         - generate tagged releases: action to generate tagged releases (releases, semver tagged),
-        triggered on "*.*.*" tags pushed to the repository and building assets after pytest test
+        triggered on "\*.\*.\*" tags pushed to the repository and building assets after pytest test
         execution in a project built with Poetry.
     - ***cpp***. It adds workflows for:
         - running unit tests: which creates an action for Catch2 based unit tests, built using
@@ -81,7 +81,7 @@ you will be prompted to fill in the following values:
         - generate Pre-releases: action to generate dev releases (pre-releases, tagged with "latest"
         tag), triggered on pushes to master branch.
         - generate tagged releases: action to generate tagged releases (releases, semver tagged),
-        triggered on "*.*.*" tags pushed to the repository.
+        triggered on "\*.\*.\*" tags pushed to the repository.
 - **ci_runner**: Target runner(s) in which to generate the action. More info in [GitHub-hosted](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) runners and [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/using-self-hosted-runners-in-a-workflow). Defaults to ubuntu-20.04.
 
 **NOTE:** Each added language actions will be accompanied of a markdown checklist, stating the
