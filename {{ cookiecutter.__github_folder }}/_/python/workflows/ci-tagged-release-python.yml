@@ -67,12 +67,12 @@ jobs:
         uses: cb80/delrel@latest
         with:
           tag: latest
-          token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
 
       - name: Release version
         uses: softprops/action-gh-release@v1
         with:
           token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
           generate_release_notes: true
+          # body_path: {{ '${{ github.workspace }}' }}/CHANGES.md
           files: |
             {{ '${{ github.workspace }}' }}/dist/*

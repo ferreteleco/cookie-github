@@ -17,6 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Delete latest tag
+        uses: cb80/delrel@latest
+        with:
+          tag: latest
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:

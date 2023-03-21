@@ -67,7 +67,6 @@ jobs:
         uses: cb80/delrel@latest
         with:
           tag: latest
-          token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
 
       - name: do-Prerelease
         uses: softprops/action-gh-release@v1
@@ -77,5 +76,6 @@ jobs:
           prerelease: true
           name: Pre-release (dev build)
           generate_release_notes: true
+          # body_path: {{ '${{ github.workspace }}' }}/CHANGES.md
           files: |
             {{ '${{ github.workspace }}' }}/dist/*

@@ -24,7 +24,7 @@ jobs:
       - name: Release development version
         uses: softprops/action-gh-release@v1
         with:
-          token: token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
+          token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
           tag_name: latest
           prerelease: true
           name: Pre-release (dev build)
