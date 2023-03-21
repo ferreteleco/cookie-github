@@ -64,9 +64,12 @@ jobs:
           poetry build
 
       - name: Delete latest tag
-        uses: cb80/delrel@latest
+        uses: dev-drprasad/delete-tag-and-release@v0.2.1
         with:
-          tag: latest
+          tag_name: latest
+          delete_release: true
+        env:
+          GITHUB_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
 
       - name: do-Prerelease
         uses: softprops/action-gh-release@v1
