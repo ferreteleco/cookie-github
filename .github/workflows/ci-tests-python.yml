@@ -8,6 +8,12 @@ on:
   pull_request:
     branches:
       - master
+  workflow_call:
+    inputs:
+      test-group:
+        type: string
+        required: false
+        description: unit or e2e
 
 jobs:
   # Ref. https://joaodlf.com/using-poetry-in-github-actions-the-easy-way.html
