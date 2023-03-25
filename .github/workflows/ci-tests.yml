@@ -1,0 +1,49 @@
+name: ci-tests
+
+env:
+    TARGET_PYTHON_VERSION:  3.10.2
+    TESTS_DIRECTORY: tests
+
+on:
+  pull_request:
+    branches:
+      - master
+
+  workflow_call:
+
+jobs:
+
+  run_unit_tests:
+
+    runs-on: ubuntu-20.04
+
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Setup (composite)
+        id: tests-setup
+        uses: ./.github/actions/ci-setup-python
+        with:
+          python_version: ${{ env.TARGET_PYTHON_VERSION }}
+
+      - name: Run tests
+        id: tests-run
+        working-directory: .
+        run: |
+          python -m pytest ${{ env.TESTS_DIRECTORY }} --doctest-modules --junit-xml=junit/ci-result-junit.xml
+
+      - name: Publish Unit Test Results
+        id: tests-publish
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: junit/ci-result-junit.xml
+          action_fail: true
+          action_fail_on_inconclusive: true

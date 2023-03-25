@@ -17,6 +17,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Delete latest tag
+        id: del-latest-tag
         uses: dev-drprasad/delete-tag-and-release@v0.2.1
         with:
           tag_name: latest
@@ -24,7 +25,8 @@ jobs:
         env:
           GITHUB_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
 
-      - name: Release development version
+      - name: Do Pre-Release
+        id: do-pre-release
         uses: softprops/action-gh-release@v1
         with:
           token: {{ '${{ secrets.GITHUB_TOKEN }}' }}

@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Release
+        id: do-release
         uses: softprops/action-gh-release@v1
         with:
           token: {{ '${{ secrets.GITHUB_TOKEN }}' }}

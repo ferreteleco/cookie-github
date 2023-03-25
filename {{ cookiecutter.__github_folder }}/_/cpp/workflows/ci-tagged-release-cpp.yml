@@ -1,30 +1,28 @@
-name: ci-tagged-release-python
+name: ci-auto-release-cpp
 
 env:
   ##############################################################################
   # Please fill in:
-  # Ref. https://docs.github.com/en/github-ae@latest/actions/learn-github-actions/variables
+  # (Ref. https://docs.github.com/en/github-ae@latest/actions/learn-github-actions/variables)
   ##############################################################################
-  # Target python version intended to use to run tests into. Defaults to 3.10.2
+  # Docker image used to generate a container in which to execute this action
   ##############################################################################
-  TARGET_PYTHON_VERSION: 3.10.2
+  TARGET_DOCKER_IMAGE: ubuntu:jammy
   ##############################################################################
+  # Build type for the release. Defaults to Release.
   ##############################################################################
-  # Target folder where tests reside. Defaults to "tests"
-  ##############################################################################
-  TESTS_DIRECTORY: tests
+  BUILD_TYPE: Release
   ##############################################################################
 
 on:
   push:
-    tags:
-      - "*.*.*"
+    branches:
+      - master
 
 jobs:
-
   run-tests:
     name: Run Unit Tests
-    uses: ./.github/workflows/ci-tests-python.yml
+    uses: ./.github/workflows/ci-tests-cpp.yml
 
     ############################################################################
     # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
@@ -38,9 +36,21 @@ jobs:
 
   release:
 
-    name: Tagged-Release
+    name: Release
     runs-on: {{ cookiecutter.ci_runner }}
     needs: [run-tests]
+
+    container:
+      image: {{ '${{ env.TARGET_DOCKER_IMAGE }}' }}
+
+      ##########################################################################
+      # Please uncomment and fill the following if the image comes from a private repository
+      # More info in: https://docs.github.com/en/actions/security-guides/encrypted-secrets
+      ##########################################################################
+      # credentials:
+      #     username: {{ '${{ secrets.RepositoryUser }}' }}
+      #     password: {{ '${{ secrets.RepositoryPass }}' }}
+      ##########################################################################
 
     permissions:
       contents: write # For tags
@@ -49,18 +59,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup (composite)
-        id: release-setup
-        uses: ./.github/actions/ci-setup-python
-        with:
-          python_version: {{ '${{ env.TARGET_PYTHON_VERSION }}' }}
+      - name: Build target for Release
+        id: release-build
+        working-directory: .
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE={{ '${{BUILD_TYPE}}' }}
+          cmake --build build
 
       - name: Package application
         id: release-package
         working-directory: .
         run: |
-          rm -rf dist
-          poetry build
+          cd build
+          cpack
 
       - name: Release tagged
         id: do-tagged-rel
@@ -70,4 +81,5 @@ jobs:
           generate_release_notes: true
           # body_path: {{ '${{ github.workspace }}' }}/CHANGES.md
           files: |
-            {{ '${{ github.workspace }}' }}/dist/*
+            {{ '${{ github.workspace }}' }}/build/packages/*.tar.gz
+            {{ '${{ github.workspace }}' }}/build/packages/*.deb
