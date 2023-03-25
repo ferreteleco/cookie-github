@@ -13,7 +13,7 @@ jobs:
 
   run-tests:
     name: Run Unit Tests
-    uses: ./.github/workflows/ci-tests-python.yml
+    uses: ./.github/workflows/ci-tests.yml
 
     permissions:
       contents: read
