@@ -81,7 +81,7 @@ def add_composite_actions_for_language(language: str):
         )
     else:
         LOG.info(
-            "Skipping CI composite Actions files generation (not implemented for %s)",
+            "Skipping CI composite Actions files generation (not required for %s)",
             language,
         )
 

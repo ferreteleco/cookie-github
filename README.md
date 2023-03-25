@@ -77,6 +77,12 @@ you will be prompted to fill in the following values:
     - ***cpp***. It adds workflows for:
         - running unit tests: which creates an action for Catch2 based unit tests, built using
         CMake.
+        - generate Pre-releases: action to generate dev releases (pre-releases, tagged with "latest"
+        tag), triggered on pushes to master branch and building assets after target tests
+        execution in a project built with CMake and packaged with cpack.
+        - generate tagged releases: action to generate tagged releases (releases, semver tagged),
+        triggered on "\*.\*.\*" tags pushed to the repository and building assets after target tests
+        execution in a project built with CMake and packaged with cpack.
     - ***generic***. It adds workflows for:
         - generate Pre-releases: action to generate dev releases (pre-releases, tagged with "latest"
         tag), triggered on pushes to master branch.
