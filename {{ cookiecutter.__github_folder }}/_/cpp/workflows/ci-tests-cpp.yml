@@ -76,7 +76,6 @@ jobs:
 
       - name: Publish Unit Test Results
         id: tests-publish
-        working-directory: .
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:

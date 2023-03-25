@@ -75,7 +75,6 @@ jobs:
 
       - name: Delete latest tag
         id: delete-prev-rel
-        working-directory: .
         uses: dev-drprasad/delete-tag-and-release@v0.2.1
         with:
           tag_name: latest
@@ -85,7 +84,6 @@ jobs:
 
       - name: do Pre-Release
         id: do-pre-release
-        working-directory: .
         uses: softprops/action-gh-release@v1
         with:
           token: {{ '${{ secrets.GITHUB_TOKEN }}' }}

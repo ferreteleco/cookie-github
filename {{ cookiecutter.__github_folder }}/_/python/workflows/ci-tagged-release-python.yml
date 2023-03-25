@@ -51,7 +51,6 @@ jobs:
 
       - name: Setup (composite)
         id: release-setup
-        working-directory: .
         uses: ./.github/actions/ci-setup-python
         with:
           python_version: {{ '${{ env.TARGET_PYTHON_VERSION }}' }}
@@ -65,7 +64,6 @@ jobs:
 
       - name: Release tagged
         id: do-tagged-rel
-        working-directory: .
         uses: softprops/action-gh-release@v1
         with:
           token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
