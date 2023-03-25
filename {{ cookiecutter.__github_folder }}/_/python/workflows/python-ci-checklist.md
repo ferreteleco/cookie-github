@@ -6,7 +6,8 @@ Be sure to properly fine-tune the generated actions before committing it to the 
 
 - [ ] The target python version has been configured (defaults to *3.10.2*).
 - [ ] The target test directory where tests live has been defined (defaults to *tests*).
-- [ ] The intended branch and triggers are correct (default: *on PR to master branch*).
+- [ ] The intended branch and triggers are correct (default: *on PR to master branch* and on
+  workflow call).
 
 Note that, for a PR to be blocked if Unit Testing action fails, status checks must be enabled on the
 target branch.
