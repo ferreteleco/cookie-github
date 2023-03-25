@@ -1,10 +1,5 @@
 name: ci-tagged-release-python
 
-on:
-  push:
-    tags:
-      - "*.*.*"
-
 env:
   ##############################################################################
   # Please fill in:
@@ -20,12 +15,34 @@ env:
   TESTS_DIRECTORY: tests
   ##############################################################################
 
+on:
+  push:
+    tags:
+      - "*.*.*"
+
 jobs:
+
+  run-tests:
+    name: Run Unit Tests
+    uses: ./.github/workflows/ci-tests-python.yml
+    with:
+      target-python-version: {{ '${{ env.TARGET_PYTHON_VERSION }}' }}
+      tests-directory: {{ '${{ env.TESTS_DIRECTORY }}' }}
+    ############################################################################
+    # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
+    # Ref. https://github.com/EnricoMi/publish-unit-test-result-action#support-fork-repositories-and-dependabot-branches
+    ############################################################################
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
 
   release:
 
     name: Tagged-Release
     runs-on: {{ cookiecutter.ci_runner }}
+    needs: [run-tests]
 
     ############################################################################
     # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
