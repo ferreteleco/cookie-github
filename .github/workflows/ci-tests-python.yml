@@ -1,40 +1,23 @@
 name: ci-tests-python
 
 env:
-  ##############################################################################
-  # Please fill in:
-  # Ref. https://docs.github.com/en/github-ae@latest/actions/learn-github-actions/variables
-  ##############################################################################
-  # Target python version intended to use to run tests into. Defaults to 3.10.2
-  ##############################################################################
-  TARGET_PYTHON_VERSION:  3.10.2
-  ##############################################################################
-  ##############################################################################
-  # Target folder where tests reside. Defaults to "tests"
-  ##############################################################################
-  TESTS_DIRECTORY: tests
-  ##############################################################################
+    TARGET_PYTHON_VERSION:  3.10.2
+    TESTS_DIRECTORY: tests
+
 
 on:
   pull_request:
     branches:
       - master
 
-  ##############################################################################
-  # Relevant where using it as a reusable workflow
-  ##############################################################################
   workflow_call:
 
 jobs:
-  # Ref. https://joaodlf.com/using-poetry-in-github-actions-the-easy-way.html
+
   run_unit_tests:
 
     runs-on: ubuntu-20.04
 
-    ############################################################################
-    # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
-    # Ref. https://github.com/EnricoMi/publish-unit-test-result-action#support-fork-repositories-and-dependabot-branches
-    ############################################################################
     permissions:
       contents: read
       issues: read
