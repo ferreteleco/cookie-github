@@ -9,11 +9,6 @@ env:
   ##############################################################################
   TEST_TARGET_NAME: test_target_name
   ##############################################################################
-  # Docker image used to generate a container in which to execute this action
-  ##############################################################################
-  TARGET_DOCKER_IMAGE: ubuntu:jammy
-  ##############################################################################
-  ##############################################################################
   # Build type for the test run. Defaults to Debug.
   ##############################################################################
   BUILD_TYPE: Debug
@@ -37,7 +32,10 @@ jobs:
     runs-on: {{ cookiecutter.ci_runner }}
 
     container:
-      image: {{ '${{ env.TARGET_DOCKER_IMAGE }}' }}
+      ##########################################################################
+      # Docker image used to generate a container in which to execute this
+      ##########################################################################
+      image: ubuntu:jammy
 
       ##########################################################################
       # Please uncomment and fill the following if the image comes from a private repository

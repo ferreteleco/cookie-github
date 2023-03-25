@@ -5,10 +5,6 @@ env:
   # Please fill in:
   # (Ref. https://docs.github.com/en/github-ae@latest/actions/learn-github-actions/variables)
   ##############################################################################
-  # Docker image used to generate a container in which to execute this action
-  ##############################################################################
-  TARGET_DOCKER_IMAGE: ubuntu:jammy
-  ##############################################################################
   # Build type for the release. Defaults to Release.
   ##############################################################################
   BUILD_TYPE: Release
@@ -41,7 +37,10 @@ jobs:
     needs: [run-tests]
 
     container:
-      image: {{ '${{ env.TARGET_DOCKER_IMAGE }}' }}
+      ##########################################################################
+      # Docker image used to generate a container in which to execute this
+      ##########################################################################
+      image: ubuntu:jammy
 
       ##########################################################################
       # Please uncomment and fill the following if the image comes from a private repository
