@@ -10,7 +10,6 @@ Project's version should be updated, when applicable:
 
 - In this very file.
 - In the CHANGELOG.md file.
-- In the CHANGES.md file.
 
 ## Usage
 
