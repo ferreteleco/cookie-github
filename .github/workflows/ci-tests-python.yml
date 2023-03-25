@@ -7,31 +7,23 @@ env:
   ##############################################################################
   # Target python version intended to use to run tests into. Defaults to 3.10.2
   ##############################################################################
-  TARGET_PYTHON_VERSION:  ${{ github.event.inputs.target-python-version || '3.10.2' }}
+  TARGET_PYTHON_VERSION:  3.10.2
   ##############################################################################
   ##############################################################################
   # Target folder where tests reside. Defaults to "tests"
   ##############################################################################
-  TESTS_DIRECTORY: ${{ github.event.inputs.tests-directory || 'tests' }}
+  TESTS_DIRECTORY: tests
   ##############################################################################
 
-  ##############################################################################
-  # Relevant where using it as a reusable workflow
-  ##############################################################################
 on:
   pull_request:
     branches:
       - master
+
+  ##############################################################################
+  # Relevant where using it as a reusable workflow
+  ##############################################################################
   workflow_call:
-    inputs:
-      target-python-version:
-          type: string
-          required: true
-          description: Target python version
-      tests-directory:
-          type: string
-          required: true
-          description: Target directory where to look for tests
 
 jobs:
   # Ref. https://joaodlf.com/using-poetry-in-github-actions-the-easy-way.html
