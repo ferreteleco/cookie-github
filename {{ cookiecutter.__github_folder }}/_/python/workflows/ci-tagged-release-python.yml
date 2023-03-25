@@ -25,9 +25,7 @@ jobs:
   run-tests:
     name: Run Unit Tests
     uses: ./.github/workflows/ci-tests-python.yml
-    with:
-      target-python-version: {{ '${{ env.TARGET_PYTHON_VERSION }}' }}
-      tests-directory: {{ '${{ env.TESTS_DIRECTORY }}' }}
+
     ############################################################################
     # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
     # Ref. https://github.com/EnricoMi/publish-unit-test-result-action#support-fork-repositories-and-dependabot-branches

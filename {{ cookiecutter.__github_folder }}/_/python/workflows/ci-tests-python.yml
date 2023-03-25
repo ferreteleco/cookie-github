@@ -1,5 +1,20 @@
 name: ci-tests-python
 
+env:
+  ##############################################################################
+  # Please fill in:
+  # Ref. https://docs.github.com/en/github-ae@latest/actions/learn-github-actions/variables
+  ##############################################################################
+  # Target python version intended to use to run tests into. Defaults to 3.10.2
+  ##############################################################################
+  TARGET_PYTHON_VERSION:  3.10.2
+  ##############################################################################
+  ##############################################################################
+  # Target folder where tests reside. Defaults to "tests"
+  ##############################################################################
+  TESTS_DIRECTORY: tests
+  ##############################################################################
+
 on:
   pull_request:
     branches:
@@ -9,28 +24,6 @@ on:
   # Relevant where using it as a reusable workflow
   ##############################################################################
   workflow_call:
-    inputs:
-      target-python-version:
-        required: true
-        description: Target python version
-      tests-directory:
-        required: true
-        description: Target directory where to look for tests
-
-env:
-  ##############################################################################
-  # Please fill in:
-  # Ref. https://docs.github.com/en/github-ae@latest/actions/learn-github-actions/variables
-  ##############################################################################
-  # Target python version intended to use to run tests into. Defaults to 3.10.2
-  ##############################################################################
-  TARGET_PYTHON_VERSION:  {{ '${{ github.event.inputs.target-python-version || 3.10.2 }}' }}
-  ##############################################################################
-  ##############################################################################
-  # Target folder where tests reside. Defaults to "tests"
-  ##############################################################################
-  TESTS_DIRECTORY: {{ '${{ github.event.inputs.tests-directory || tests }}' }}
-  ##############################################################################
 
 jobs:
   run_unit_tests:
