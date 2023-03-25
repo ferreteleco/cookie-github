@@ -29,6 +29,8 @@ checks to pass before merging'.
 - [ ] The intended branch and triggers are correct (default: *on push to master*).
 - [ ] If exists, uncomment the body selection of the release action (if uncommented, defaults to a
   *CHANGES.md* file in the root of the repository).
+- [ ] The release is assumed to be packaged with cpack and that utility configured to store
+generated files inside build/packages folder. Please update this if needed.
 
 ## ci-tagged-release-cpp
 
@@ -41,3 +43,5 @@ checks to pass before merging'.
 - [ ] The default tag pattern matches the one intended for the project (default: *"\*.\*.\*"*).
 - [ ] If exists, uncomment the body selection of the release action (if uncommented, defaults to a
   *CHANGES.md* file in the root of the repository).
+- [ ] The release is assumed to be packaged with cpack and that utility configured to store
+generated files inside build/packages folder. Please update this if needed.
