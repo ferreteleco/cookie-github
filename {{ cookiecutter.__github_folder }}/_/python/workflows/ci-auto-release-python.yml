@@ -61,11 +61,11 @@ jobs:
           rm -rf dist
           poetry build
 
-      - name: Delete latest tag
+      - name: Delete dev-release tag
         id: delete-prev-rel
         uses: dev-drprasad/delete-tag-and-release@v0.2.1
         with:
-          tag_name: latest
+          tag_name: dev-release
           delete_release: true
         env:
           GITHUB_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
@@ -75,7 +75,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
-          tag_name: latest
+          tag_name: dev-release
           prerelease: true
           name: Pre-release (dev build)
           generate_release_notes: true
