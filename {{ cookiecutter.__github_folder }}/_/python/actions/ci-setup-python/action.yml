@@ -16,19 +16,12 @@ runs:
         with:
           python-version: {{ '${{ inputs.python_version }}' }}
 
-      - name: Install poetry
-        id: poetry-setup
-        working-directory: .
-        run: |
-          python -m pip install pipx && python -m pipx install poetry
-        shell: bash
-
-      - name: Configure poetry
-        id: poetry-configure
-        working-directory: .
-        run: |
-          poetry config virtualenvs.in-project true
-        shell: bash
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.4.0
+          virtualenvs-create: true
+          virtualenvs-in-project: true
 
       - name: Cache the virtualenv
         id: venv-cache
