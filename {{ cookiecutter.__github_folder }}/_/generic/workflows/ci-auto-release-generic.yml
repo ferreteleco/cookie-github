@@ -16,11 +16,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Delete latest tag
-        id: del-latest-tag
+      - name: Delete dev-release tag
+        id: del-dev-release-tag
         uses: dev-drprasad/delete-tag-and-release@v0.2.1
         with:
-          tag_name: latest
+          tag_name: dev-release
           delete_release: true
         env:
           GITHUB_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
@@ -30,7 +30,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
-          tag_name: latest
+          tag_name: dev-release
+          generate_release_notes: true
           prerelease: true
           name: Pre-release (dev build)
           # body_path: {{ '${{ github.workspace }}' }}/CHANGES.md

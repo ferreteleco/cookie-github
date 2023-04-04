@@ -4,7 +4,7 @@ This repository can be used for adding Github Actions and templates to an existi
 
 ## Version
 
-Current version is 1.2.1 and was set according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Current version is 2.0.0 and was set according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 Project's version should be updated, when applicable:
 
@@ -87,7 +87,7 @@ you will be prompted to fill in the following values:
         tag), triggered on pushes to master branch.
         - generate tagged releases: action to generate tagged releases (releases, semver tagged),
         triggered on "\*.\*.\*" tags pushed to the repository.
-- **ci_runner**: Target runner(s) in which to generate the action. More info in [GitHub-hosted](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) runners and [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/using-self-hosted-runners-in-a-workflow). Defaults to ubuntu-20.04.
+- **ci_runner**: Target runner(s) in which to generate the action. More info in [GitHub-hosted](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) runners and [self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/using-self-hosted-runners-in-a-workflow). Defaults to ubuntu-20.04 (GitHub hosted).
 
 **NOTE:** Each added language actions will be accompanied of a markdown checklist, stating the
 changes / configuration required to fine tune it.

@@ -1,8 +1,3 @@
-## TODO
-
-- Extensive test it in example repos.
-- 
-
 ## Added
 
 - Action for auto releases in pushes to master. Release tag is set to 'latest' automatically.

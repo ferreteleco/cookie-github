@@ -23,4 +23,5 @@ jobs:
         with:
           token: {{ '${{ secrets.GITHUB_TOKEN }}' }}
           prerelease: false
+          generate_release_notes: true
           # body_path: {{ '${{ github.workspace }}' }}/CHANGES.md
