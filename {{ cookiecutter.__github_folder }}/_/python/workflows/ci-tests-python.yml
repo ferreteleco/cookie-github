@@ -46,7 +46,7 @@ jobs:
 
       - name: Setup (composite)
         id: tests-setup
-        uses: ./.github/workflows/ci-setup-python
+        uses: ./.github/actions/ci-setup-python
         with:
           python_version: {{ '${{ env.TARGET_PYTHON_VERSION }}' }}
 
