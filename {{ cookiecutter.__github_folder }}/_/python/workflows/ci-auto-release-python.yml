@@ -22,7 +22,7 @@ on:
 
 jobs:
   run-tests:
-    name: Run Unit Tests
+    name: Auto Release Unit Testing
     uses: ./.github/workflows/ci-tests-python.yml
 
     ############################################################################

@@ -5,6 +5,7 @@ Be sure to properly fine-tune the generated actions before committing it to the 
 ## ci-tests-cpp
 
 - [ ] [**ENV**] The target name for the test executable has been configured.
+- [ ] [**ENV**] The location for the test executable has been configured.
 - [ ] [**JOB-CONF**] The target Docker image where to run the test has been specified (defaults to
   *ubuntu:jammy*). **Delete it if not needed**.
     - [ ] [**JOB-CONF**] The credentials for acquiring the Docker image (if needed) have been configured

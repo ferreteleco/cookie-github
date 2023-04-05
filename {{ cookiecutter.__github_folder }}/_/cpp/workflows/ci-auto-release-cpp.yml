@@ -17,8 +17,16 @@ on:
 
 jobs:
   run-tests:
-    name: Run Unit Tests
+    name: Auto Release Unit Testing
     uses: ./.github/workflows/ci-tests-cpp.yml
+    ##########################################################################
+    # Please uncomment and fill the following if the image comes from a private repository
+    # More info in: https://docs.github.com/en/actions/security-guides/encrypted-secrets
+    ##########################################################################
+    # secrets:
+    #   RepositoryUser: {{ '${{ secrets.RepositoryUser }}' }}
+    #   RepositoryPass: {{ '${{ secrets.RepositoryPass }}' }}
+    ##########################################################################
 
     ############################################################################
     # Minimum permissions required by EnricoMi/publish-unit-test-result-action@v2
@@ -62,7 +70,7 @@ jobs:
         id: release-build
         working-directory: .
         run: |
-          cmake -S . -B build -DCMAKE_BUILD_TYPE={{ '${{BUILD_TYPE}}' }}
+          cmake -S . -B build -DCMAKE_BUILD_TYPE={{ '${{env.BUILD_TYPE}}' }}
           cmake --build build
 
       - name: Package application
@@ -92,5 +100,4 @@ jobs:
           generate_release_notes: true
           # body_path: {{ '${{ github.workspace }}' }}/CHANGES.md
           files: |
-            {{ '${{ github.workspace }}' }}/build/packages/*.tar.gz
             {{ '${{ github.workspace }}' }}/build/packages/*.deb
