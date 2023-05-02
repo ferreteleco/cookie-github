@@ -32,7 +32,6 @@ runs:
 
       - name: Install dependencies
         id: deps-install
-        if: steps.venv-cache.outputs.cache-hit != 'true'
         run: |
           poetry install
         shell: bash
