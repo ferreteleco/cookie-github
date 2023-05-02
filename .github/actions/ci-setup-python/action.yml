@@ -27,11 +27,13 @@ runs:
 
       - name: Cache the virtualenv
         uses: actions/cache@v3
+        id: venv-cache
         with:
           path: ./.venv
           key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements.txt') }}
 
       - name: Install dependencies
+        if: steps.venv-cache.outputs.cache-hit != 'true'
         run: |
           pip install -r requirements.txt
         shell: bash
